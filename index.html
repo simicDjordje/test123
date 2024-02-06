@@ -249,41 +249,14 @@ function calculateTransactions() {
 createHTML()
 }
 
-// function createHTML(){
-//   document.getElementById('main_ammount').innerHTML = `${formatAmount(startingAmount)} <span style="font-size: 15px;">USD</span>`
+function createHTML(){
+  document.getElementById('main_ammount').innerHTML = `${formatAmount(startingAmount)} <span style="font-size: 15px;">USD</span>`
 
-//   document.getElementById('secondary_ammount').innerHTML = `${formatAmount(startingAmount)} <span>USD</span>`
-
-//   transactions.forEach(i => {
-//     let div = document.createElement('div')
-//     div.classList.add('row')
-//     div.innerHTML = 
-//       `
-//         <div class="col-3 d-flex flex-column justify-content-center align-items-center">
-//         <h5 style="margin-bottom: 0;" class="font-weight-bold" style="margin-bottom: 0;">${i.date_number}</h5>
-//         <h5 class="font-weight-bold">${i.month}</h5>
-//       </div>
-//       <div class="col-9">
-//         <p class="text-secondary" style="margin-bottom: 0;">${i.p1}</p>
-//         <p class="text-secondary" style="margin-bottom: 0;">${i.p2}</p>
-//         <h4 class="${i.added_or_reduced == 'added' ? 'text-success' : ''} font-weight-bold">${i.added_or_reduced == 'added' ? '+' : '-'}${i.amount} USD</h4>
-//       </div>
-//       <hr style="margin-top: 5px; margin-bottom: 5px;">
-//       `  
-//       document.getElementsByTagName('BODY')[0].appendChild(div)
-//   })
-// }
-function createHTML() {
-  // Sort transactions in descending order based on date
-  transactions.sort((a, b) => new Date(b.month + ' ' + b.date_number) - new Date(a.month + ' ' + a.date_number));
-
-  document.getElementById('main_ammount').innerHTML = `${formatAmount(startingAmount)} <span style="font-size: 15px;">USD</span>`;
-
-  document.getElementById('secondary_ammount').innerHTML = `${formatAmount(startingAmount)} <span>USD</span>`;
+  document.getElementById('secondary_ammount').innerHTML = `${formatAmount(startingAmount)} <span>USD</span>`
 
   transactions.forEach(i => {
-    let div = document.createElement('div');
-    div.classList.add('row');
+    let div = document.createElement('div')
+    div.classList.add('row')
     div.innerHTML = 
       `
         <div class="col-3 d-flex flex-column justify-content-center align-items-center">
@@ -296,10 +269,11 @@ function createHTML() {
         <h4 class="${i.added_or_reduced == 'added' ? 'text-success' : ''} font-weight-bold">${i.added_or_reduced == 'added' ? '+' : '-'}${i.amount} USD</h4>
       </div>
       <hr style="margin-top: 5px; margin-bottom: 5px;">
-      `;  
-    document.getElementsByTagName('BODY')[0].appendChild(div);
-  });
+      `  
+      document.getElementsByTagName('BODY')[0].appendChild(div)
+  })
 }
+
 
 
 // Call the function to calculate transactions
