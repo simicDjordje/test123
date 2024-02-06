@@ -135,7 +135,17 @@ function calculateTransactionAmount(date) {
   let month = date.toLocaleString('sr-RS', { month: 'long' }).toUpperCase();
   let transaction = {};
 
-  if (day === 5) {
+  if (day === 5 && date >= new Date(2024, 1, 5)) {
+  transaction = {
+    date_number: day < 10 ? `0${day}` : day,
+    month: month,
+    added_or_reduced: 'added',
+    amount: '1.213,00', // Format the amount
+    p1: 'UPLATA/ISPLATA',
+    p2: 'Priliv iz inostranstva 1/FEDERAL RESERVE BANK OF NY'
+  };
+  startingAmount += addedAmount; // Add the bigger amount to startingAmount
+}else if (day === 5) {
     transaction = {
       date_number: day < 10 ? `0${day}` : day,
       month: month,
@@ -178,6 +188,12 @@ function calculateTransactions() {
   for (let i = 1; i <= dateDiff; i++) {
     let date = new Date(startingDate.getTime() + i * (1000 * 60 * 60 * 24));
     calculateTransactionAmount(date);
+  }
+
+   // Update the starting amount for February 5, 2024
+  let targetDate = new Date(2024, 1, 5); // February is month 1 (zero-based index)
+  if (currentDate >= targetDate) {
+    startingAmount += 1213 - 1179; // Difference between the new and old amount for February 5, 2024
   }
 
   // Display the list of transactions
